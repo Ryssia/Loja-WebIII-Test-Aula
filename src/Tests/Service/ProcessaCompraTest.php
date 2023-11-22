@@ -91,7 +91,7 @@ public function testVerificaSe_OProdutoDeMenorValorNoCarrinho_EstaCorreto(Carrin
 }
 
 
-    public function carrinhoComProdutos()
+    public static function carrinhoComProdutos()
     {
         $maria = new Usuario('Maria');
         $joao = new Usuario('Joao');
