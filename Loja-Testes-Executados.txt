@@ -1,18 +1,18 @@
 Processa Compra (Loja\WebIII\Tests\Service\ProcessaCompra)
  [x] Um
- [ ] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Aleatorio"
- [ ] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Crescente"
- [ ] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Decrescente"
- [ ] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Aleatorio"
- [ ] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Crescente"
- [ ] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Decrescente"
- [ ] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
- [ ] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
- [ ] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
- [ ] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
- [ ] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
- [ ] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
- [ ] Obtem produto de maior valor no carrinho
- [ ] Obtem produto de menor valor no carrinho
+ [x] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Aleatorio"
+ [x] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Crescente"
+ [x] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Decrescente"
+ [x] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Aleatorio"
+ [x] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Crescente"
+ [x] VerificaSe OValorTotalDaCompraEASomaDosProdutosDoCarrinho SaoIguais with data set "carrinho Decrescente"
+ [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
+ [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
+ [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
+ [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
+ [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
+ [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
+ [x] Obtem produto de maior valor no carrinho
+ [x] Obtem produto de menor valor no carrinho
  [x] Finaliza compra sem produtos no carrinho
 

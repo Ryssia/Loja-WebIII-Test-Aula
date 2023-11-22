@@ -10,7 +10,7 @@ class ProcessaCompra {
     /** @var Carrinho */
     private $carrinho;
     /** @var int */
-    private $totalDeProdutos;
+    private $qtdDeProdutos;
     /** @var float */
     private $totalDaCompra;
     private $menorValor, $maiorValor;
@@ -20,6 +20,7 @@ class ProcessaCompra {
         $this->menorValor = PHP_FLOAT_MAX; // Inicializa com o maior valor possível
         $this->maiorValor = 0;
         $this->qtdDeProdutos = 0; // Inicializa com o menor valor possível
+        
     }
 
     public function processaProduto(Produto $produto) {
@@ -30,27 +31,28 @@ class ProcessaCompra {
         }
     }
 
-    public function getProdutoDeMaiorValor(): float{
-
+    public function getProdutoDeMaiorValor(Carrinho $carrinho): float {
         $maiorValor = 0;
 
-        foreach ($this->produtos as $produto) {
+        foreach ($carrinho->getProdutos() as $produto) {
             $maiorValor = max($maiorValor, $produto->getValor());
         }
 
         return $maiorValor;
     }
 
-
-    public function getProdutoDeMenorValor(): float {
+    public function getProdutoDeMenorValor(Carrinho $carrinho): float {
         $menorValor = PHP_FLOAT_MAX;
 
-        foreach ($this->produtos as $produto) {
+        foreach ($carrinho->getProdutos() as $produto) {
             $menorValor = min($menorValor, $produto->getValor());
         }
 
         return $menorValor;
     }
+
+    
+    
 
     
     public function finalizaCompra(Carrinho $carrinho){
