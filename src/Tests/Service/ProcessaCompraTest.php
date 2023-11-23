@@ -17,6 +17,39 @@ class ProcessaCompraTest extends TestCase
 
     }
 
+    public static function carrinhoComProdutos(){
+        $maria = new Usuario('Maria');
+        $joao = new Usuario('Joao');
+        $pedro = new Usuario('Pedro');
+
+        $carrinhoOrdemCrescente = new Carrinho($maria);
+        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Cooktop', 600));
+        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Geladeira', 1000));
+        $carrinhoOrdemCrescente->adicionaProduto(new Produto('FornoEletrico', 2500));
+        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Fogao', 3000));
+        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Pia', 4500));
+
+        $carrinhoOrdemDecrescente = new Carrinho($pedro);
+        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Pia', 4500));
+        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Fogao', 3000));
+        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('FornoEletrico', 2500));
+        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Geladeira', 1000));
+        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Cooktop', 600));
+
+        $carrinhoOrdemAleatoria = new Carrinho($joao);
+        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('FornoEletrico', 2500));
+        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Geladeira', 1000));
+        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Pia', 4500));
+        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Cooktop', 600));
+        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Fogao', 3000));
+
+        return [
+            'carrinho Aleatorio' => [$carrinhoOrdemAleatoria],
+            'carrinho Crescente' => [$carrinhoOrdemCrescente],
+            'carrinho Decrescente' => [$carrinhoOrdemDecrescente],
+        ];
+    }
+
     public function testUm()
     {
         $maria = new Usuario('Maria');
@@ -55,6 +88,8 @@ class ProcessaCompraTest extends TestCase
         self::assertEquals($quantidadeEsperada, $quantidadeNoCarrinho);
     }
 
+    
+
     /**
      * @dataProvider carrinhoComProdutos
      */
@@ -66,63 +101,122 @@ class ProcessaCompraTest extends TestCase
         self::assertEquals($totalEsperado, $totalDaCompra);
     }
 
+    
+
     /**
      * @dataProvider carrinhoComProdutos
      */
-    public function testVerificaSe_OProdutoDeMaiorValorNoCarrinho_EstaCorreto(Carrinho $carrinho)
-{
-    $this->compra->finalizaCompra($carrinho);
+    public function testVerificaSe_OProdutoDeMaiorValorNoCarrinho_EstaCorreto(Carrinho $carrinho){
+        $this->compra->finalizaCompra($carrinho);
 
-    $produtoDeMaiorValor = $this->compra->getProdutoDeMaiorValor($carrinho);
-    $totalEsperado = 4500;
-    self::assertEquals($totalEsperado, $produtoDeMaiorValor);
-}
+        $produtoDeMaiorValor = $this->compra->getProdutoDeMaiorValor($carrinho);
+        $totalEsperado = 4500;
+        self::assertEquals($totalEsperado, $produtoDeMaiorValor);
+    }
 
-/**
- * @dataProvider carrinhoComProdutos
- */
-public function testVerificaSe_OProdutoDeMenorValorNoCarrinho_EstaCorreto(Carrinho $carrinho)
-{
-    $this->compra->finalizaCompra($carrinho);
-
-    $produtoDeMenorValor = $this->compra->getProdutoDeMenorValor($carrinho);
-    $totalEsperado = 600;
-    self::assertEquals($totalEsperado, $produtoDeMenorValor);
-}
-
-
-    public static function carrinhoComProdutos()
-    {
+    public function testFinalizaCompraComApenasUmProdutoNoCarrinho(){
         $maria = new Usuario('Maria');
-        $joao = new Usuario('Joao');
-        $pedro = new Usuario('Pedro');
+        $carrinho = new Carrinho($maria);
+        $carrinho->adicionaProduto(new Produto('Geladeira', 1500));
 
-        $carrinhoOrdemCrescente = new Carrinho($maria);
-        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Cooktop', 600));
-        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Geladeira', 1000));
-        $carrinhoOrdemCrescente->adicionaProduto(new Produto('FornoEletrico', 2500));
-        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Fogao', 3000));
-        $carrinhoOrdemCrescente->adicionaProduto(new Produto('Pia', 4500));
+        $compra = new ProcessaCompra();
+        $compra->finalizaCompra($carrinho);
 
-        $carrinhoOrdemDecrescente = new Carrinho($pedro);
-        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Pia', 4500));
-        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Fogao', 3000));
-        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('FornoEletrico', 2500));
-        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Geladeira', 1000));
-        $carrinhoOrdemDecrescente->adicionaProduto(new Produto('Cooktop', 600));
+        $totalDaCompra = $compra->getTotalDaCompra();
+        $totalEsperado = 1500;
 
-        $carrinhoOrdemAleatoria = new Carrinho($joao);
-        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('FornoEletrico', 2500));
-        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Geladeira', 1000));
-        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Pia', 4500));
-        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Cooktop', 600));
-        $carrinhoOrdemAleatoria->adicionaProduto(new Produto('Fogao', 3000));
+        self::assertEquals($totalEsperado, $totalDaCompra);
+    }
 
-        return [
-            'carrinho Aleatorio' => [$carrinhoOrdemAleatoria],
-            'carrinho Crescente' => [$carrinhoOrdemCrescente],
-            'carrinho Decrescente' => [$carrinhoOrdemDecrescente],
-        ];
+    public function testVerificaSe_AQuantidadeDeProdutosEmCompraECarrinho_SaoIguais_ComApenasUmProduto() {
+        // Arrange - Given
+        $maria = new Usuario('Maria');
+        $carrinho = new Carrinho($maria);
+        $carrinho->adicionaProduto(new Produto('Geladeira', 1500));
+        $compra = new ProcessaCompra();
+        // Act - When
+        $compra->finalizaCompra($carrinho);
+        $totalDeProdutosDaCompra = $compra->getTotalDeProdutos($carrinho);
+        // Assert - Then
+        $totalEsperado = 1;
+        self::assertEquals($totalEsperado, $totalDeProdutosDaCompra);
+    }
+
+    public function testCompraComMaisDe10Itens_OuValorAcimaDe50000_DeveFalhar() {
+        // Arrange - Given
+        $maria = new Usuario('Maria');
+        $carrinho = new Carrinho($maria);
+
+        // Adiciona mais de 10 itens ao carrinho
+        for ($i = 0; $i < 11; $i++) {
+            $carrinho->adicionaProduto(new Produto('Produto ' . $i, 1000));
+        }
+
+        $compra = new ProcessaCompra();
+
+        // Act - When
+        // Aqui você espera que uma exceção seja lançada
+        $this->expectException(\Exception::class); // Usando a classe \Exception do namespace global
+        $compra->finalizaCompra($carrinho);
+    }
+
+    public function testRemoverProdutoDoCarrinho_DeveAtualizarQuantidade() {
+        // Arrange - Given
+        $maria = new Usuario('Maria');
+        $carrinho = new Carrinho($maria);
+        $produto = new Produto('Geladeira', 1500);
+        $carrinho->adicionaProduto($produto);
+        $compra = new ProcessaCompra();
+        // Act - When
+        $carrinho->removeProduto($produto->getProduto());
+        $compra->finalizaCompra($carrinho);
+        $totalDeProdutosDaCompra = $compra->getTotalDeProdutos();
+        // Assert - Then
+        $totalEsperado = 0;
+        self::assertEquals($totalEsperado, $totalDeProdutosDaCompra);
+    }
+
+    public function testListarTop3ProdutosMaisCarosEMaisBaratos() {
+        // Arrange - Given
+        $maria = new Usuario('Maria');
+        $carrinho = new Carrinho($maria);
+    
+        // Adicione alguns produtos ao carrinho
+        $carrinho->adicionaProduto(new Produto('Geladeira', 1500));
+        $carrinho->adicionaProduto(new Produto('Fogão', 1000));
+        $carrinho->adicionaProduto(new Produto('Micro-ondas', 500));
+        $carrinho->adicionaProduto(new Produto('Liquidificador', 200));
+        // Adicione mais produtos conforme necessário...
+    
+        $compra = new ProcessaCompra();
+    
+        // Act - When
+        $compra->finalizaCompra($carrinho);
+        $topMaisCaros = $carrinho->getTopMaisCaros(3);
+        $topMaisBaratos = $carrinho->getTopMaisBaratos(3);
+    
+        // Assert - Then
+        // Assert que $topMaisCaros contém os produtos mais caros na ordem certa
+        $this->assertEquals('Geladeira', $topMaisCaros[0]->getProduto());
+        $this->assertEquals('Fogão', $topMaisCaros[1]->getProduto());
+        $this->assertEquals('Micro-ondas', $topMaisCaros[2]->getProduto());
+    
+        // Assert que $topMaisBaratos contém os produtos mais baratos na ordem certa
+        $this->assertEquals('Liquidificador', $topMaisBaratos[0]->getProduto());
+        $this->assertEquals('Micro-ondas', $topMaisBaratos[1]->getProduto());
+        $this->assertEquals('Fogão', $topMaisBaratos[2]->getProduto());
+    }
+    
+
+    /**
+     * @dataProvider carrinhoComProdutos
+     */
+    public function testVerificaSe_OProdutoDeMenorValorNoCarrinho_EstaCorreto(Carrinho $carrinho){
+        $this->compra->finalizaCompra($carrinho);
+
+        $produtoDeMenorValor = $this->compra->getProdutoDeMenorValor($carrinho);
+        $totalEsperado = 600;
+        self::assertEquals($totalEsperado, $produtoDeMenorValor);
     }
 
     
@@ -170,5 +264,7 @@ public function testVerificaSe_OProdutoDeMenorValorNoCarrinho_EstaCorreto(Carrin
 
         self::assertEquals($totalEsperado, $totalDaCompra);
     }
+
+    
 
 }

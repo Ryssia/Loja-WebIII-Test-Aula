@@ -60,16 +60,24 @@ class ProcessaCompra {
         $this->carrinho = $carrinho;
         $produtos = $this->carrinho->getProdutos();
 
+        if (count($produtos) > 10 || $this->totalDaCompra > 50000) {
+            throw new \Exception('A compra não pode ter mais de 10 itens ou um valor acima de 50000.');
+        }
+        
         if (empty($produtos)) {
             $this->totalDaCompra = 0;
+            $this->qtdDeProdutos = 0;
             return;
         }
 
         foreach ($produtos as $produto) {
             $this->totalDaCompra += $produto->getValor();
             $this->processaProduto($produto);
+            $this->qtdDeProdutos++;
         }
     }
+
+    
 
 
     public function getTotalDaCompra(): float {

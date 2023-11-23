@@ -1,3 +1,6 @@
+Carrinho (Loja\WebIII\Tests\Service\Carrinho)
+ [x] Carrinho com produtos with data set "carrinho com produtos"
+
 Processa Compra (Loja\WebIII\Tests\Service\ProcessaCompra)
  [x] Um
  [x] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais with data set "carrinho Aleatorio"
@@ -9,6 +12,11 @@ Processa Compra (Loja\WebIII\Tests\Service\ProcessaCompra)
  [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
  [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
  [x] VerificaSe OProdutoDeMaiorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
+ [x] Finaliza compra com apenas um produto no carrinho
+ [x] VerificaSe AQuantidadeDeProdutosEmCompraECarrinho SaoIguais ComApenasUmProduto
+ [x] CompraComMaisDe10Itens OuValorAcimaDe50000 DeveFalhar
+ [x] RemoverProdutoDoCarrinho DeveAtualizarQuantidade
+ [x] Listar top 3 produtos mais caros e mais baratos
  [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Aleatorio"
  [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Crescente"
  [x] VerificaSe OProdutoDeMenorValorNoCarrinho EstaCorreto with data set "carrinho Decrescente"
